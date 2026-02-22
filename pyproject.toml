@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "broker-nanobot"
-version = "0.1.0"
+version = "0.1.1"
 description = "Nanobot module injector that patches in broker transport channels"
 requires-python = ">=3.11"
 license = { text = "MIT" }
@@ -16,6 +16,11 @@ dependencies = [
     "loguru>=0.7.0,<1.0.0",
     "pydantic>=2.0.0,<3.0.0",
 ]
+
+[project.urls]
+Documentation = "https://github.com/ModdingFox/broker-nanobot#README.md"
+Issues = "https://github.com/ModdingFox/broker-nanobot/issues"
+Source = "https://github.com/ModdingFox/broker-nanobot"
 
 [project.scripts]
 broker-nanobot = "broker_nanobot.main:main"
