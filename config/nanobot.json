@@ -1,0 +1,64 @@
+{
+  "agents": {
+    "defaults": {
+      "model": "anthropic/claude-opus-4-5",
+      "workspace": "/workspace"
+    }
+  },
+  "channels": {
+    "dingtalk": {
+      "enabled": false
+    },
+    "discord": {
+      "enabled": false
+    },
+    "email": {
+      "enabled": false
+    },
+    "feishu": {
+      "enabled": false
+    },
+    "kafka": {
+      "bootstrap_servers": "redpanda:9092",
+      "enabled": false,
+      "group_id": "broker-nanobot",
+      "reply_topic": "broker.replies",
+      "request_topic": "broker.requests"
+    },
+    "mqtt": {
+      "enabled": true,
+      "host": "mqtt",
+      "port": 1883,
+      "qos": 1,
+      "reply_topic": "broker/replies",
+      "request_topic": "broker/requests"
+    },
+    "qq": {
+      "enabled": false
+    },
+    "rabbitmq": {
+      "enabled": false,
+      "prefetch_count": 1,
+      "reply_exchange": "broker.replies",
+      "reply_queue": "broker.replies",
+      "request_exchange": "broker.requests",
+      "request_queue": "broker.requests",
+      "request_routing_key": "#",
+      "url": "amqp://guest:guest@rabbitmq:5672/"
+    },
+    "slack": {
+      "enabled": false
+    },
+    "telegram": {
+      "enabled": false
+    },
+    "whatsapp": {
+      "enabled": false
+    }
+  },
+  "providers": {
+    "openrouter": {
+      "apiKey": ""
+    }
+  }
+}

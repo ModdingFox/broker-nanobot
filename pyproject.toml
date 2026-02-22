@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "broker-nanobot"
+version = "0.1.0"
+description = "Nanobot module injector that patches in broker transport channels"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "nanobot-ai>=0.1.4,<1.0.0",
+    "aio-pika>=9.0.0,<10.0.0",
+    "aiomqtt>=2.1.0,<3.0.0",
+    "aiokafka>=0.10.0,<1.0.0",
+    "loguru>=0.7.0,<1.0.0",
+    "pydantic>=2.0.0,<3.0.0",
+]
+
+[project.scripts]
+broker-nanobot = "broker_nanobot.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/broker_nanobot"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/broker_nanobot" = "broker_nanobot"
+
+[tool.hatch.envs.default]
+python = "3.11"
+dependencies = [
+    "hatch>=1.12.0,<2.0.0",
+    "pytest>=8.0.0,<9.0.0",
+    "pytest-cov>=5.0.0,<6.0.0",
+    "ruff>=0.7.0,<1.0.0",
+]
+
+[tool.hatch.envs.default.scripts]
+build = "python -m hatch build -t wheel"
+lint = "ruff check src tests"
+format = "ruff format src tests"
+format-check = "ruff format --check src tests"
+test = "pytest"
+coverage = "pytest --cov=broker_nanobot --cov-report=term-missing --cov-report=xml"
+check = "ruff check src tests && ruff format --check src tests && pytest"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+source = ["broker_nanobot"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
